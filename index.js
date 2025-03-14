@@ -19,10 +19,13 @@ app.use(express.json());
  // .then(() => console.log("Connected to MongoDB"))
  // .catch(err => console.error("MongoDB connection error:", err));
 
-  mongoose.connect("mongodb+srv://ragibhasa006:01773672495@cluster0.d5mp5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.error("MongoDB connection error:", err));
-
+ // mongoose.connect("mongodb+srv://ragibhasa006:01773672495@cluster0.d5mp5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+ // .then(() => console.log("Connected to MongoDB"))
+ // .catch(err => console.error("MongoDB connection error:", err));
+ mongoose.connect(process.env.MONGODB_URI)
+ .then(() => console.log("Connected to MongoDB"))
+ .catch((err) => console.error("MongoDB connection error:", err));
+ 
   
 
 // Define User Schema
@@ -167,8 +170,8 @@ console.log(contents.join("\n\n"));
  const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-    user: "ragibhasan002@gmail.com",
-    pass: "xndzxyyhzihvrkpk",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
